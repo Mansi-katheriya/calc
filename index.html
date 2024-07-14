@@ -1,0 +1,296 @@
+<html>
+<head>
+   
+</head>
+<link rel="shortcut icon" href="p7.png">
+
+<title>calculator</title>
+
+<!----------------------css-------------------------!>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Courier New", Courier, monospace;
+}
+body {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-color: #202020;
+}
+.container {
+  position: relative;
+  min-width: 300px;
+  min-height: 400px;
+  padding: 40px 30px 30px;
+  border-radius: 20px;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.25),
+    10px 10px 70px rgba(0, 0, 0, 0.25), inset -5px -5px 15px rgba(0, 0, 0, 0.25),
+    inset 5px 5px 15px rgba(0, 0, 0, 0.25);
+}
+.container span {
+  color: #fff;
+  position: relative;
+  display: grid;
+  width: 80px;
+  place-items: center;
+  margin: 8px;
+  height: 80px;
+  background: linear-gradient(180deg, #2f2f2f, #3f3f3f);
+  box-shadow: inset -8px 0 8px rgba(0, 0, 0, 0.15),
+    inset 0 -8px 8px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(0, 0, 0, 0.75),
+    10px 20px 25px rgba(0, 0, 0, 0.4);
+  user-select: none;
+  cursor: pointer;
+  font-weight: 400;
+  border-radius: 10px;
+}
+.calculator span:active {
+  filter: brightness(1.5);
+}
+.calculator span::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  bottom: 14px;
+  right: 12px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #2d2d2d, #4d4d4d);
+  box-shadow: -5px -5px 15px rgba(0, 0, 0, 0.1),
+    10px 5px 10px rgba(0, 0, 0, 0.15);
+  border-left: 1px solid #0004;
+  border-bottom: 1px solid #0004;
+  border-top: 1px solid #0009;
+}
+.calculator span i {
+  position: relative;
+  font-style: normal;
+  font-size: 1.5em;
+  text-transform: uppercase;
+}
+.calculator {
+  position: relative;
+  display: grid;
+}
+.calculator .value {
+  position: relative;
+  grid-column: span 4;
+  height: 100px;
+  width: calc(100% - 20px);
+  left: 10px;
+  border: none;
+  outline: none;
+  background-color: #a7af7c;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.75);
+  text-align: right;
+  padding: 10px;
+  font-size: 2em;
+}
+.calculator .clear {
+  grid-column: span 2;
+  width: 180px;
+  background: #f00;
+}
+.calculator .clear::before {
+  background: linear-gradient(90deg, #d20000, #ffffff5c);
+  border-left: 1px solid #fff4;
+  border-bottom: 1px solid #fff4;
+  border-top: 1px solid #fff4;
+}
+.calculator .plus {
+  grid-row: span 2;
+  height: 180px;
+}
+.calculator .equal {
+  background: #2196f3;
+}
+.calculator .equal::before {
+  background: linear-gradient(90deg, #1479c9, #ffffff5c);
+  border-left: 1px solid #fff4;
+  border-bottom: 1px solid #fff4;
+  border-top: 1px solid #fff4;
+}
+
+  
+</style>  
+  
+</head>  
+
+
+<body>
+
+<div class="container">
+  <form action="" name="calc" class="calculator">
+
+    <input type="text" class="value cal" id = "calc" readonly name="txt" />
+
+
+    <span class="num clear" onclick="calc.txt.value=''"><i>C</i></span>
+
+    <span class="num" onclick="f15()" value='/'><i>/</i></span>
+
+    <span class="num" onclick="f12()" value='*'><i>*</i></span>
+    <span class="num" onclick="f9()" value='7'><i>7</i></span>
+    <span class="num" onclick="f10()" value='8'><i>8</i></span>
+    <span class="num" onclick="f11()" value='9'><i>9</i></span>
+
+    <span class="num" onclick="f8()" value='-' ><i>-</i></span>
+    <span class="num" onclick="f5()" value='4' ><i>4</i></span>
+    <span class="num" onclick="f6()" value='5'><i>5</i></span>
+    <span class="num" onclick="f7()" value='6'><i>6</i></span>
+
+    <span class="num plus" onclick="f4()" value='+'><i>+</i></span>
+    <span class="num" onclick="f1()" value='1'><i>1</i></span>
+    <span class="num" onclick="f2()" value='2'><i>2</i></span>
+    <span class="num" onclick="f3()" value='3'><i>3</i></span>
+
+    <span class="num" onclick="f14()" value='0' ><i>0</i></span>
+    <span class="num" onclick="f0()" value='00'><i>00</i></span>
+    <span class="num" onclick="calc.txt.value+='.'"><i>.</i></span>
+
+<span class="num equal" onclick="f16()" value='='><i>=</i></span>
+  </form>
+</div> 
+
+</body>  
+</html>  
+
+
+<!---javascript-----------!>
+<script>
+      function f1()
+		
+		{
+			x=document.getElementById("calc").value;
+			num="1";
+			document.getElementById("calc").value=x+num;
+		}
+	
+	function f2()
+		{
+	 		a=document.getElementById("calc").value;
+  			num="2"
+			document.getElementById("calc").value=a+num;
+
+		}
+
+	 function f3()
+		
+		{
+			x=document.getElementById("calc").value;
+			num="3";
+			document.getElementById("calc").value=x+num;
+		}
+	 function f4()
+		
+		{
+			x=document.getElementById("calc").value;
+			num="+";
+			document.getElementById("calc").value=x+num;
+		}
+	function f5()
+		
+		{
+			x=document.getElementById("calc").value;
+			num="4";
+			document.getElementById("calc").value=x+num;
+		}
+	function f6()
+		
+		{
+			x=document.getElementById("calc").value;
+			num="5";
+			document.getElementById("calc").value=x+num;
+		}
+	function f7()
+		
+		{
+			x=document.getElementById("calc").value;
+			num="6";
+			document.getElementById("calc").value=x+num;
+		}
+	function f8()
+		
+		{
+			x=document.getElementById("calc").value;
+			num="-";
+			document.getElementById("calc").value=x+num;
+		}
+	function f9()
+		
+		{
+			x=document.getElementById("calc").value;
+			num="7";
+			document.getElementById("calc").value=x+num;
+		}
+
+	function f10()
+		
+		{
+			x=document.getElementById("calc").value;
+			num="8";
+			document.getElementById("calc").value=x+num;
+		}
+	function f11()
+		
+		{
+			x=document.getElementById("calc").value;
+			num="9";
+			document.getElementById("calc").value=x+num;
+		}
+	function f12()
+		
+		{
+			x=document.getElementById("calc").value;
+			num="*";
+			document.getElementById("calc").value=x+num;
+		}
+	function f13()
+		
+		{
+			x=document.getElementById("calc").value;
+			num="";
+			document.getElementById("calc").value="";
+		}
+	
+	function f14()
+		
+		{
+			x=document.getElementById("calc").value;
+			num="0";
+			document.getElementById("calc").value=0;
+		}
+		function f0()
+		
+		{
+			x=document.getElementById("calc").value;
+			num="00";
+			document.getElementById("calc").value=00;
+		}
+	function f15()
+		
+		{
+			x=document.getElementById("calc").value;
+			num="/";
+			document.getElementById("calc").value=x+num;
+		}
+	function f16()
+		{
+x=document.getElementById("calc").value;
+                    
+  			document.getElementById("calc").value=eval(x);
+		}
+
+		function f13()
+		{
+    	                x=document.getElementById("clear").value;                
+  			document.getElementById("calc").value=x.slice(0,-1);
+		}
+
+</script>
